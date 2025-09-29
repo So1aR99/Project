@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:background="@drawable/mainzzang"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/bouncing_ball_game"
+        android:textSize="40sp"
+        android:textColor="#FFABAB"
+        android:layout_marginTop="60dp"/>
+    <EditText
+        android:id="@+id/nicknameText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="사용하실 닉네임을 입력하세요"
+        android:textSize="30sp"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:textColorHint="#AEFFFFFF"/>
+    <Button
+        android:id="@+id/playbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/play"
+        android:textSize="30sp"
+        android:backgroundTint="#32F66E87"
+        android:layout_marginTop="30dp"/>
+    <Button
+        android:id="@+id/rulesbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="game rules"
+        android:textSize="30sp"
+        android:backgroundTint="#32F66E87" />
+</LinearLayout>
