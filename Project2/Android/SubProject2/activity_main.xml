@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@drawable/main"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="메모장"
+        android:textSize="70sp"
+        android:layout_marginBottom="200dp"/>
+
+    <Button
+        android:id="@+id/newmemo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="새로 작성"
+        android:textSize="50sp"
+        android:textColor="#982C2020"
+        android:backgroundTint="#4EEF9898"/>
+    <Button
+        android:id="@+id/savememo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="저장된 메모"
+        android:textSize="50sp"
+        android:textColor="#982C2020"
+        android:backgroundTint="#4EEF9898"/>
+</LinearLayout>
