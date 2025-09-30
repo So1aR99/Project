@@ -357,8 +357,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
                     scorePaint.setColor(0xFFFFFFFF);
                     scorePaint.setTextSize(80);
                     scorePaint.setTextAlign(Paint.Align.LEFT);
-                    canvas.drawText("Player: " + nickname, 100, 150, scorePaint);
-                    canvas.drawText("Score: " + score, 100, 250, scorePaint);
+                    canvas.drawText("Player : " + nickname, 100, 150, scorePaint);
+                    canvas.drawText("Score : " + score, 100, 250, scorePaint);
                     for (Item item : items) {
                         item.draw(canvas);
                     }
@@ -406,8 +406,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
                 scorePaint.setColor(0xFFFFFFFF);
                 scorePaint.setTextSize(80);
                 scorePaint.setTextAlign(Paint.Align.LEFT);
-                canvas.drawText("Player: " + nickname, 100, 150, scorePaint);
-                canvas.drawText("Score: " + score, 100, 250, scorePaint);
+                canvas.drawText("Player : " + nickname, 100, 150, scorePaint);
+                canvas.drawText("Score : " + score, 100, 250, scorePaint);
                 for (Item item : items) {
                     item.draw(canvas);
                 }
@@ -459,9 +459,9 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         if (gameOver) return false;                                             // 게임이 종료된 상태면 터치를 무시하고 false반환
 
         if (event.getAction() == MotionEvent.ACTION_MOVE || event.getAction() == MotionEvent.ACTION_DOWN) {
-                                                                                // 터치 액션이 MOVE or DOWN일때 처리
-                                                                                // MOVE : 터치한 상태로 움직임
-                                                                                // DOWN : 화면을 처음 터치
+            // 터치 액션이 MOVE or DOWN일때 처리
+            // MOVE : 터치한 상태로 움직임
+            // DOWN : 화면을 처음 터치
             int newX = (int) event.getX() - paddle.getSize().x / 2;             // 터치한 x좌표에서 패들 너비의 절반을 빼, 패들의 중앙이 터치 위치
             int maxX = holder.getSurfaceFrame().right - paddle.getSize().x;     // 패들이 화면 오른쪽 끝을 넘지 않도록 최대 x좌표 계산
             if (newX < 0) newX = 0;                                             // 왼쪽 끝 제한, 패들이 화면 왼쪽보다 작아지면 0으로 고정
@@ -480,8 +480,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
                 scorePaint.setColor(0xFFFFFFFF);
                 scorePaint.setTextSize(80);
                 scorePaint.setTextAlign(Paint.Align.LEFT);
-                canvas.drawText("Player: " + nickname, 100, 150, scorePaint);
-                canvas.drawText("Score: " + score, 100, 250, scorePaint);
+                canvas.drawText("Player : " + nickname, 100, 150, scorePaint);
+                canvas.drawText("Score : " + score, 100, 250, scorePaint);
                 for (Item item : items) {
                     item.draw(canvas);
                 }
