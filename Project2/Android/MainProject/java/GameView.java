@@ -381,7 +381,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
                     holder.unlockCanvasAndPost(canvas);                         // 다 그리면 캔버스를 해제하고 화면에 표시
                 }
                 try {
-                    Thread.sleep(1);                                      // 약간의 딜레이를 줘서 속도를 조절
+                    Thread.sleep(1);                                            // 약간의 딜레이를 줘서 속도를 조절
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -508,3 +508,4 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         return super.onTouchEvent(event);
     }
 }
+
