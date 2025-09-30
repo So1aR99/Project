@@ -46,7 +46,7 @@ public class GameOver extends AppCompatActivity {
         TextView nametext = findViewById(R.id.nametext);
         nametext.setText("Player : " + nickname);
         TextView scoretext = findViewById(R.id.scoretext);
-        scoretext.setText("Score: " + score);                               // 받은 점수를 텍스트 형태로 출력
+        scoretext.setText("Score : " + score);                               // 받은 점수를 텍스트 형태로 출력
 
         // 현재 플레이어의 점수를 랭킹에 추가 (자동으로 정렬되고 상위 3개만 저장됨)
         scoreManager.addScore(nickname, score);
