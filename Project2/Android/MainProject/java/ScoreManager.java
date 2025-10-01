@@ -53,8 +53,8 @@ public class ScoreManager {
     public List<ScoreEntry> getRankings() {
         List<ScoreEntry> rankings = new ArrayList<>();                      // 랭킹을 담을 빈 리스트 생성
 
-        String scoresStr = prefs.getString(KEY_SCORES, "");           // 저장된 점수 문자열 가져오기
-        String namesStr = prefs.getString(KEY_NAMES, "");             // 저장된 닉네임 문자열 가져오기
+        String scoresStr = prefs.getString(KEY_SCORES, "");                 // 저장된 점수 문자열 가져오기
+        String namesStr = prefs.getString(KEY_NAMES, "");                   // 저장된 닉네임 문자열 가져오기
 
         if (!scoresStr.isEmpty() && !namesStr.isEmpty()) {                  // 저장된 데이터가 있으면
             String[] scores = scoresStr.split(",");                         // 쉼표로 구분된 점수들을 배열로 분리
