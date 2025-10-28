@@ -272,7 +272,23 @@ int main(void)
                         LCD_Clear();
                         LCD_pos(0, 0);
                         LCD_STR("Management Mode");
-                        continue;  // 아래 LED OFF 코드 건너뛰기
+						
+						 while(1)
+						 {
+							 char key = keypad_getkey();
+							 if(key == '0')  // 키패드로 '0' 입력 시 대기 모드로 복귀
+							 {
+								 LCD_Clear();
+								 LCD_pos(0, 0);
+								 LCD_STR("Waiting...");
+								 PORTA = 0x00;  // 모든 LED 끔
+								 _delay_ms(500);
+								 break;  // while(1) 탈출 → main loop로 복귀
+							 }
+							 _delay_ms(100);
+						 }
+
+                         continue;  // 아래 LED OFF 코드 건너뛰기
                     }
                     else  // 비밀번호 불일치
                     {
@@ -307,7 +323,9 @@ int main(void)
                 }
             }
         }
+        
         _delay_ms(50);
     }
+    
     return 0;
 }
