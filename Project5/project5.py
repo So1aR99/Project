@@ -1,10 +1,12 @@
+import time
+
 import numpy as np
 import matplotlib.pyplot as plt
+import serial
 import tensorflow as tf
 import cv2 as cv
 
-# ① 단순 선형 회귀 (경사 하강법)
-
+# 단순 선형 회귀 (경사 하강법)
 X = np.array([0.0, 1.0, 2.0])
 y = np.array([3.0, 3.5, 5.5])
 W = 0  # 기울기
@@ -30,11 +32,11 @@ plt.legend()
 plt.title("Linear Regression by Gradient Descent")
 plt.show()
 
-# ② MNIST 신경망 학습
+# MNIST 신경망 학습
 (train_images, train_labels), (test_images, test_labels) = tf.keras.datasets.mnist.load_data()
 print("Train images shape:", train_images.shape)
 
-# 데이터 전처리
+# 데이터 전처리(정규화)
 train_images = train_images.reshape(60000, 28 * 28) / 255.0
 test_images = test_images.reshape(10000, 28 * 28) / 255.0
 
@@ -65,33 +67,43 @@ print(f"테스트 정확도: {test_accuracy:.4f}")
 # 모델 저장
 model.save('MNIST_PARAM.keras')
 
-# ③ 손글씨 이미지 불러와서 예측
-# test.png 파일 읽기
-image = cv.imread('test.png', cv.IMREAD_GRAYSCALE)
+ser = serial.Serial("COM5", 115200, timeout=1)
+time.sleep(2)
 
-if image is None:
-    print("⚠️ test.png 파일을 찾을 수 없습니다. 경로를 확인하세요.")
-else:
-    # Jupyter나 VSCode에서는 matplotlib으로 표시
-    plt.imshow(image, cmap='gray')
-    plt.title("Original Image (Grayscale)")
-    plt.axis('off')
-    plt.show()
+results = []
 
-    # 이미지 전처리
+for i in range(1, 12):  # num1.png ~ num11.png
+    filename = f"./number/num{i}.png"
+    image = cv.imread(filename, cv.IMREAD_GRAYSCALE)
+
+    if image is None:
+        print(filename, "파일을 찾을 수 없습니다.")
+        continue
+
+    print(f"\n----- {i}번째 사진 -----")
+
     image = cv.resize(image, (28, 28))
     image = image.astype('float32')
-    image = 255.0 - image  # 색상 반전
-    image /= 255.0  # 정규화
+    image = 255.0 - image   # 색상 반전
+    image /= 255.0
     image = image.reshape(1, 28 * 28)
 
-    # 예측
     predict = model.predict(image, batch_size=1)
-    print("예측 결과 벡터:", predict)
-    print(f'가장 큰 인덱스(예측 숫자): {predict.argmax()}')
+    num = predict.argmax()
+    print("예측된 숫자:", num)
+
+    ser.write(str(num).encode())   # 1글자씩 누적 출력됨
+    print("전송완료:", num)
+
+    results.append(num)
+    time.sleep(0.2)
 
     # 예측 시각화
     plt.imshow(image.reshape(28, 28), cmap='gray')
-    plt.title(f"Predicted Number: {predict.argmax()}")
+    plt.title(f"Predicted Number: {num}")
     plt.axis('off')
     plt.show()
+
+print("\n=== 입력된 번호 ===")
+result_string = "".join(str(n) for n in results)  # 리스트 → 연속 문자열 변환
+print(result_string)
